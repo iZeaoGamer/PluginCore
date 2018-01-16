@@ -6,7 +6,7 @@ use pocketmine\command\PluginCommand;
 use pocketmine\Player;
 use pocketmine\utils\TextFormat as TF;
 use pocketmine\utils\TextFormat;
-class Ping extends PluginCommand {
+class Ping extends Command {
     private $prefix =  TextFormat::BOLD . TextFormat::GREEN . "Ping" . TextFormat::RESET;
     public function __construct($name, Loader $main){
         $this->main = $main;

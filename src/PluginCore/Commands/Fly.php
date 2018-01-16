@@ -9,7 +9,7 @@ use pocketmine\Player;
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
 use pocketmine\command\CommandExecutor;
-class Fly extends PluginCommand {
+class Fly extends Command {
     public $players = array();
      public function onEntityDamage(EntityDamageEvent $event) {
         if($event instanceof EntityDamageByEntityEvent) {
