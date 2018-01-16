@@ -1,8 +1,8 @@
 <?php
 
-namespace PluginCore\commands;
+namespace PluginCore\Commands;
 
-use bansystem\translation\Translation;
+use PluginCore\Plugins\ActionSystem\translation\Translation;
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
 use pocketmine\utils\TextFormat;
