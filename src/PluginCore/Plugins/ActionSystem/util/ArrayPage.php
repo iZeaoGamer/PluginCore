@@ -1,6 +1,6 @@
 <?php
 
-namespace bansystem\util;
+namespace PluginCore\Plugins\ActionSystem\util;
 
 class ArrayPage {
     
