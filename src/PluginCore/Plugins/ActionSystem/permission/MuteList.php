@@ -1,6 +1,6 @@
 <?php
 
-namespace bansystem\permission;
+namespace PluginCore\Plugins\ActionSystem\permission;
 
 use DateTime;
 use InvalidArgumentException;
