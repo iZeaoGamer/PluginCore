@@ -1,9 +1,9 @@
 <?php
 
-namespace bansystem\listener;
+namespace PluginCore\Plugins\ActionSystem\listener;
 
-use bansystem\Manager;
-use bansystem\util\date\Countdown;
+use PluginCore\Plugins\ActionSystem\Manager;
+use PluginCore\Plugins\ActionSystem\util\date\Countdown;
 use DateTime;
 use pocketmine\event\Listener;
 use pocketmine\event\player\PlayerCommandPreprocessEvent;
