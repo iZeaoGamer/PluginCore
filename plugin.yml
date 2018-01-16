@@ -1,0 +1,6 @@
+name: PluginCore
+version: 1.0.0-ALPHA
+api: [3.0.0-ALPHA10]
+author: Zeao
+description: Plugins together all in one.
+main: PluginCore\Loader
