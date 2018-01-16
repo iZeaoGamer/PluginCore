@@ -1,6 +1,6 @@
 <?php
 
-namespace bansystem\util\date;
+namespace PluginCore\Plugins\ActionSystem\util\date;
 
 use DateTime;
 use InvalidArgumentException;
