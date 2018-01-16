@@ -1,6 +1,6 @@
 <?php
 
-namespace bansystem\command;
+namespace PluginCore\Commands;
 
 use PluginCore\Plugins\ActionSystem\Manager;
 use PluginCore\Plugins\ActionSystem\translation\Translation;

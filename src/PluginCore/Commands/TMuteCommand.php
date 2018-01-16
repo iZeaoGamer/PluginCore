@@ -1,10 +1,10 @@
 <?php
 
-namespace bansystem\command;
+namespace PluginCore\Commands;
 
-use bansystem\Manager;
-use bansystem\translation\Translation;
-use bansystem\util\date\Countdown;
+use PluginCore\Plugins\ActionSystem\Manager;
+use PluginCore\Plugins\ActionSystem\translation\Translation;
+use PluginCore\Plugins\ActionSystem\util\date\Countdown;
 use DateTime;
 use InvalidArgumentException;
 use pocketmine\command\Command;
