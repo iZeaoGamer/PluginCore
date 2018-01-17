@@ -3,9 +3,13 @@
 namespace PluginsCore\Listeners;
 
 use pocketmine\plugin\PluginBase;
-use pocketmine\event\EntityDamageEvent;
-use pocketmine\event\PlayerJoinEvent;
+use pocketmine\event\entity\EntityDamageEvent;
+use pocketmine\event\player\PlayerJoinEvent;
+
+class FriendsEvent extends Listener
+
 public $request = array();
+
 	public function onEnable(){
 		$this->getLogger()->info("Loaded!");
 		$this->getServer()->getPluginManager()->registerEvents($this ,$this);
