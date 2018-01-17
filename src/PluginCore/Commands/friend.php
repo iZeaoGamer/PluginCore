@@ -69,15 +69,15 @@ class friend extends Loader {
 			break;
 			case "accept":
 				if ($sender->hasPermission("friend.accept")){
-				//echo var_dump($this->request);
+				$plugin->getLogger()->info("var_dump($this->request");
 				if (in_array($sender->getName(), $this->request)){
-					//echo "added";
+					$plugin->getLogger()->info("added");
 					foreach ($this->request as $target => $requestp){
 						$target = $this->getServer()->getPlayer($target);
 						$requestp = $this->getServer()->getPlayer($requestp);
 						$plugin->getLogger()->info("$target->getName().$requestp->getName()");
 						if ($requestp->getName() === $sender->getName()){
-							//echo "yes";
+							$plugin->getLogger()->info("yes");
 							$this->addFriend($target, $requestp);
 							$this->addFriend($requestp, $target);
 						}
