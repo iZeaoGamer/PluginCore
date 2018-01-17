@@ -16,7 +16,7 @@ class cancelrequest extends PluginTask{
 	}
 	
 	public function onRun(int $currentTick){
-		$plugin->getLogger()->info("ran cancelrequest!";
+		$plugin->getLogger()->info("ran cancelrequest!");
          $this->getOwner()->removeRequest($this->target,$this->requestp, 0);
 	}
 }
