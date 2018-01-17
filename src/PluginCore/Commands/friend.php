@@ -1,6 +1,6 @@
 <?php
 namespace PluginCore\Commands;
-use pocketmine\plugin\PluginBase;
+
 use pocketmine\event\Listener;
 use pocketmine\command\CommandSender;
 use pocketmine\command\Command;
@@ -9,39 +9,8 @@ use pocketmine\Player;
 use pocketmine\event\player\PlayerJoinEvent;
 use pocketmine\utils\Config;
 use pocketmine\event\entity\EntityDamageEvent;
-class friend extends PluginBase implements Listener{
-	public $request = array();
-	public function onEnable(){
-		$this->getLogger()->info("Loaded!");
-		$this->getServer()->getPluginManager()->registerEvents($this ,$this);
-		@mkdir($this->getDataFolder());
-		@mkdir($this->getDataFolder()."players/");
-	}
-	//events
-	public function onDamageByPlayer(EntityDamageEvent $ev){
-		$cause = $ev->getCause();
-		switch ($cause){
-		case EntityDamageEvent::CAUSE_ENTITY_ATTACK:
-		$atkr = $ev->getDamager();
-		$player = $ev->getEntity();
-		if ($atkr instanceof Player and $player instanceof Player){
-			if($this->isFriend($player, $atkr->getName())){
-				$ev->setCancelled();
-				$atkr->sendMessage("Cannot attack friend :(");
-			}
-		}
-		break;
-		}
-	}
+class friend extends Loader {
 	
-	public function onJoin(PlayerJoinEvent $ev){
-		if (!file_exists($this->getDataFolder()."players/".$ev->getPlayer()->getName().".yml")){
-			$config = new Config($this->getDataFolder()."players/".strtolower($ev->getPlayer()->getName()).".yml", Config::YAML);
-			$config->set("friends", array());
-			$config->save();
-			echo "made config for ".$ev->getPlayer()->getName();
-		}
-	}
 	//commands
 	public function onCommand(CommandSender $sender,Command $command, string $label,array $args): bool{
 		switch($command->getName()){
