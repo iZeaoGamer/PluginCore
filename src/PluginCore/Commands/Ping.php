@@ -1,12 +1,14 @@
 <?php
+
 namespace PluginCore\Commands;
+
 use PluginCore\Loader;
 use pocketmine\command\CommandSender;
 use pocketmine\command\PluginCommand;
 use pocketmine\Player;
 use pocketmine\utils\TextFormat as TF;
 use pocketmine\utils\TextFormat;
-class Ping extends Command {
+class Ping extends Loader {
     private $prefix =  TextFormat::BOLD . TextFormat::GREEN . "Ping" . TextFormat::RESET;
     public function __construct($name, Loader $main){
         $this->main = $main;

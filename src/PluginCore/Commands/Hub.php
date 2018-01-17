@@ -1,5 +1,7 @@
 <?php
+
 namespace PluginCore\Commands;
+
 use pocketmine\Player;
 use pocketmine\command\CommandSender;
 use pocketmine\command\PluginCommand;
@@ -7,7 +9,7 @@ use pocketmine\level\sound\EndermanTeleportSound;
 use pocketmine\math\Vector3;
 use pocketmine\utils\TextFormat as C;
 use PluginCore\Loader;
-class Hub extends Command {
+class Hub extends Loader {
     public function __construct($name, Loader $plugin){
         $this->setDescription("Teleport to Hub.");
         parent::__construct($name, $plugin);

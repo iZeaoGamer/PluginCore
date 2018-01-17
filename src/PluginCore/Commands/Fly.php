@@ -1,5 +1,7 @@
 <?php
+
 namespace PluginCore\Commands;
+
 use pocketmine\Server;
 use pocketmine\event\Listener;
 use pocketmine\utils\TextFormat;
@@ -9,7 +11,7 @@ use pocketmine\Player;
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
 use pocketmine\command\CommandExecutor;
-class Fly extends Command {
+class Fly extends Loader {
     public $players = array();
      public function onEntityDamage(EntityDamageEvent $event) {
         if($event instanceof EntityDamageByEntityEvent) {
