@@ -76,7 +76,7 @@ class friend extends Loader {
 					foreach ($this->request as $target => $requestp){
 						$target = $this->getServer()->getPlayer($target);
 						$requestp = $this->getServer()->getPlayer($requestp);
-						$this->getLogger()->info("$target->getName().$requestp->getName();"
+						$this->getLogger()->info("$target->getName().$requestp->getName()";
 						if ($requestp->getName() === $sender->getName()){
 							//echo "yes";
 							$this->addFriend($target, $requestp);
