@@ -1,6 +1,5 @@
 <?php
 namespace PluginCore\Commands;
-
 use pocketmine\event\Listener;
 use pocketmine\command\CommandSender;
 use pocketmine\command\Command;
@@ -76,7 +75,7 @@ class friend extends Loader {
 					foreach ($this->request as $target => $requestp){
 						$target = $this->getServer()->getPlayer($target);
 						$requestp = $this->getServer()->getPlayer($requestp);
-						$this->getLogger()->info("$target->getName().$requestp->getName()";
+						echo $target->getName().$requestp->getName();
 						if ($requestp->getName() === $sender->getName()){
 							//echo "yes";
 							$this->addFriend($target, $requestp);
