@@ -101,7 +101,7 @@ class friend extends Loader {
 		$requestp->sendMessage("Sent request to ".$target->getName());
 		$this->request[$requestp->getName()] = $target->getName();
 		$target->sendMessage(TextFormat::GREEN.$requestp->getName()." has requested you as a friend do /accept to accept or ignore to ignore");
-		echo var_dump($this->request);
+		$plugin->getLogger()->info("var_dump($this->request");
  		$task = new cancelrequest($this, $target, $requestp);
  		$this->getServer()->getScheduler()->scheduleDelayedTask($task, 20*10);
  		return ;
