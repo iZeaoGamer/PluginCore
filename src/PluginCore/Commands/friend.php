@@ -11,34 +11,6 @@ use pocketmine\utils\Config;
 use pocketmine\event\entity\EntityDamageEvent;
 
 class friend extends Loader {
-	public $request = array();
-	}
-        
-	//events
-	public function onDamageByPlayer(EntityDamageEvent $ev){
-		$cause = $ev->getCause();
-		switch ($cause){
-		case EntityDamageEvent::CAUSE_ENTITY_ATTACK:
-		$atkr = $ev->getDamager();
-		$player = $ev->getEntity();
-		if ($atkr instanceof Player and $player instanceof Player){
-			if($this->isFriend($player, $atkr->getName())){
-				$ev->setCancelled();
-				$atkr->sendMessage("Cannot attack friend :(");
-			}
-		}
-		break;
-		}
-	}
-	
-	public function onJoin(PlayerJoinEvent $ev){
-		if (!file_exists($this->getDataFolder()."players/".$ev->getPlayer()->getName().".yml")){
-			$config = new Config($this->getDataFolder()."players/".strtolower($ev->getPlayer()->getName()).".yml", Config::YAML);
-			$config->set("friends", array());
-			$config->save();
-			echo "made config for ".$ev->getPlayer()->getName();
-		}
-	}
 	//commands
 	public function onCommand(CommandSender $sender, Command $command, string $label, array $args): bool{
 		switch($command->getName()){
@@ -98,7 +70,7 @@ class friend extends Loader {
 					break;
 					
 				}
-			}}else{
+			}else{
 		$sender->sendMessage("Must use command in-game");
                 return true;
 	}
@@ -133,7 +105,7 @@ class friend extends Loader {
 	}
 	
 	//api
-	public function addRequest(Player $target,Player $requestp){
+	public function addRequest(Player $target, Player $requestp){
 		if (!$this->isFriend($requestp, $target->getName())){
 		$requestp->sendMessage("Sent request to ".$target->getName());
 		$this->request[$requestp->getName()] = $target->getName();
