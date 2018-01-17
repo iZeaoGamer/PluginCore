@@ -1,5 +1,5 @@
 <?php
-namespace PluginsCore\Plugins\FriendsPE;
+namespace PluginCore\Plugins\FriendsPE;
 
 use pocketmine\scheduler\PluginTask;
 use pocketmine\plugin\Plugin;
@@ -16,7 +16,7 @@ class cancelrequest extends PluginTask{
 	}
 	
 	public function onRun(int $currentTick){
-		echo "ran cancelrequest!";
+		$plugin->getLogger()->info("ran cancelrequest!";
          $this->getOwner()->removeRequest($this->target,$this->requestp, 0);
 	}
 }
