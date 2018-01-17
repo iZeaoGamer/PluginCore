@@ -1,7 +1,5 @@
 <?php
-
 namespace PluginCore\Commands;
-
 use pocketmine\plugin\PluginBase;
 use pocketmine\event\Listener;
 use pocketmine\command\CommandSender;
@@ -45,7 +43,7 @@ class friend extends PluginBase implements Listener{
 		}
 	}
 	//commands
-	public function onCommand(CommandSender $sender,Command $command,string $label,array $args): bool{
+	public function onCommand(CommandSender $sender,Command $command, string $label,array $args): bool{
 		switch($command->getName()){
 			case "friend":
 			if ($sender instanceof Player){
@@ -61,8 +59,8 @@ class friend extends PluginBase implements Listener{
 								$sender->sendMessage(TextFormat::RED."Player not found");
 							}
 						}
-						return ;
-						}{
+						return true;
+						}else{
 							$sender->sendMessage(TextFormat::RED."You do not have permission for that command :(");
 						}
 					break;
@@ -77,7 +75,7 @@ class friend extends PluginBase implements Listener{
 						}else{
 							$sender->sendMessage("Usage: /friend remove [name]");
 						}
-						return ;
+						return true;
 						}else{
 							$sender->sendMessage(TextFormat::RED."You do not have permission for that command :(");
 						}
@@ -90,7 +88,7 @@ class friend extends PluginBase implements Listener{
 						foreach ($array as $friendname){
 							$sender->sendMessage(TextFormat::GREEN."* ".$friendname);
 						}
-						return ;
+						return true;
 						}else {
 							$sender->sendMessage(TextFormat::RED."You do not have permission for that command :(");
 						}
@@ -117,11 +115,11 @@ class friend extends PluginBase implements Listener{
 						}
 						
 					}
-					return ;
+					return true;
 				}else{
 					$sender->sendMessage("No pending friend requests :(");
 				}
-				return ;
+				return true;
 				}else{
 					$sender->sendMessage(TextFormat::RED."You do not have permission for that command :(");
 				}
