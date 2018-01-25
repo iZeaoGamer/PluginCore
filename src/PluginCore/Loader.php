@@ -17,7 +17,7 @@ use PluginCore\Commands\{BlockCommand, BlockIPCommand};
 use PluginCore\Commands\{TMuteCommand, TMuteIPCommand};
 use PluginCore\Commands\{BlockListCommand, BanListCommand};
 use PluginCore\Commands\{MuteIPCommand, MuteCommand};
-use PluginCore\Commands\{UnbanCommand, UnbanIPcommand, PardonCommand, PardonIPCommand};
+use PluginCore\Commands\{UnbanCommand, UnbanIPCommand, PardonCommand, PardonIPCommand};
 /*use PluginCore\Commands\GBuy; TODO*/
 use PluginCore\Commands\Fly;
 class Loader extends PluginBase{
