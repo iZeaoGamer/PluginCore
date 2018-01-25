@@ -12,7 +12,6 @@ use PluginCore\Loader;
 class Hub extends Loader {
     public function __construct() {
         $this->description = "Teleport to the hub.";
-        $this->setAliases(["lobby"]);
         $this->setPermission("vmcore.command.hub");
     }
      
