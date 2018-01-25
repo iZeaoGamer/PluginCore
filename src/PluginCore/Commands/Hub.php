@@ -11,9 +11,10 @@ use pocketmine\utils\TextFormat as C;
 use PluginCore\Loader;
 class Hub extends Loader {
     public function __construct($name, Loader $plugin){
-        parent::__construct($name, $plugin);
-    	$this->setDescription("Teleport to Hub.");
-    	$this->setAliases(["lobby"]);
+        parent::__construct("hub");
+        $this->description = "Teleport to the hub.";
+        $this->setAliases(["lobby"]);
+        $this->setPermission("vmcore.command.hub");
     }
      
     public function execute(CommandSender $sender, string $commandLabel, array $args): bool{
