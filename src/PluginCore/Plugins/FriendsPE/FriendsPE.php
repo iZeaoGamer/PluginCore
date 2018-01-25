@@ -1,6 +1,6 @@
 <?php
-namespace PluginCore\Commands;
-
+namespace friends;
+use pocketmine\plugin\PluginBase;
 use pocketmine\event\Listener;
 use pocketmine\command\CommandSender;
 use pocketmine\command\Command;
@@ -9,11 +9,14 @@ use pocketmine\Player;
 use pocketmine\event\player\PlayerJoinEvent;
 use pocketmine\utils\Config;
 use pocketmine\event\entity\EntityDamageEvent;
-
-class FriendsPE extends Loader {
+class main extends PluginBase implements Listener{
 	public $request = array();
+	public function onEnable(){
+		$this->getLogger()->info("Loaded!");
+		$this->getServer()->getPluginManager()->registerEvents($this ,$this);
+		@mkdir($this->getDataFolder());
+		@mkdir($this->getDataFolder()."players/");
 	}
-        
 	//events
 	public function onDamageByPlayer(EntityDamageEvent $ev){
 		$cause = $ev->getCause();
@@ -54,13 +57,12 @@ class FriendsPE extends Loader {
 								$this->addRequest($player, $sender);
 							}	else {
 								$sender->sendMessage(TextFormat::RED."Player not found");
-                                                                return true;
+								return true;
 							}
 						}
-						return true;
+						return ;
 						}{
 							$sender->sendMessage(TextFormat::RED."You do not have permission for that command :(");
-                                                        return true;
 						}
 					break;
 					case "remove":
@@ -68,18 +70,16 @@ class FriendsPE extends Loader {
 						if (isset($args[1])){
 							if ($this->removeFriend($sender, $args[1])){
 								$sender->sendMessage("Friend removed");
-                                                                return true;
 							}else{
 								$sender->sendMessage("Friend not found do /friend list \n to list your friends");
-                                                                return true;
 							}
 						}else{
 							$sender->sendMessage("Usage: /friend remove [name]");
 						}
-						return true;
+						return ;
 						}else{
 							$sender->sendMessage(TextFormat::RED."You do not have permission for that command :(");
-                                                        return true;
+							return true;
 						}
 					break;
 					case "list":
@@ -90,17 +90,17 @@ class FriendsPE extends Loader {
 						foreach ($array as $friendname){
 							$sender->sendMessage(TextFormat::GREEN."* ".$friendname);
 						}
-						return true;
+						return ;
 						}else {
 							$sender->sendMessage(TextFormat::RED."You do not have permission for that command :(");
-                                                        return true;
+							return true;
 						}
 					break;
 					
 				}
 			}}else{
 		$sender->sendMessage("Must use command in-game");
-                return true;
+				return true;
 	}
 			break;
 			case "accept":
@@ -119,15 +119,15 @@ class FriendsPE extends Loader {
 						}
 						
 					}
-					return true;
+					return ;
 				}else{
 					$sender->sendMessage("No pending friend requests :(");
 				}
-				return true;
+				return ;
 				}else{
 					$sender->sendMessage(TextFormat::RED."You do not have permission for that command :(");
+					return true;
 				}
-                        return true;
 			break;
 		}
 	}
@@ -137,28 +137,28 @@ class FriendsPE extends Loader {
 		if (!$this->isFriend($requestp, $target->getName())){
 		$requestp->sendMessage("Sent request to ".$target->getName());
 		$this->request[$requestp->getName()] = $target->getName();
-		$target->sendMessage(TextFormat::GREEN.$requestp->getName()." has requested you as a friend do /friend accept to accept or /friend ignore to ignore");
+		$target->sendMessage(TextFormat::GREEN.$requestp->getName()." has requested you as a friend do /accept to accept or ignore to ignore");
 		echo var_dump($this->request);
  		$task = new cancelrequest($this, $target, $requestp);
  		$this->getServer()->getScheduler()->scheduleDelayedTask($task, 20*10);
- 		return true;
+ 		return ;
 		}else{
 			$requestp->sendMessage("That player is already your friend :)");
-                        return true;
+			return true;
 		}
 	}
 	
-	public function removeRequest(Player $target, Player $requestp, $reason){
+	public function removeRequest(Player $target,Player $requestp, $reason){
 		if (in_array($target->getName(), $this->request)){
 			if ($reason == 0){
 				$requestp->sendMessage(TextFormat::RED."Player ".$target->getName()." did not accept your friend request... :(");
-                                return true;
+				return true;
 			}
 			unset($this->request[$requestp->getName()]);
 		}
 	}
 	
-	public function addFriend(Player $player, Player $friend){
+	public function addFriend(Player $player,Player $friend){
 		$player->sendMessage("added friend".$friend->getName());
 		$friend->sendMessage("added friend ".$player->getName());
 		$config = new Config($this->getDataFolder()."players/". strtolower($player->getName()).".yml", Config::YAML);
@@ -167,7 +167,6 @@ class FriendsPE extends Loader {
 		$config->set("friends", $array);
 		$config->save();
 		$this->removeRequest($friend, $player, 1);
-                return true;
 	}
 	
 	public function removeFriend(Player $player, $friendname){
