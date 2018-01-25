@@ -7,7 +7,7 @@ use pocketmine\utils\Config;
 use pocketmine\event\entity\EntityDamageEvent;
 use pocketmine\event\entity\EntityDamageByEntityEvent;
 use pocketmine\Player;
-class main extends PluginBase implements Listener{
+class BowHealth extends PluginBase implements Listener{
 	public function onEnable(){
 		$this->getServer()->getPluginManager()->registerEvents($this, $this);
 		@mkdir($this->getDataFolder());
