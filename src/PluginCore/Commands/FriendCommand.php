@@ -1,19 +1,22 @@
 <?php
-namespace PluginCore\Commands;
-
+namespace PluginCore\Plugins\FriendsPE;
+use pocketmine\plugin\PluginBase;
 use pocketmine\event\Listener;
-use pocketmine\command\{PluginCommand, CommandSender};
+use pocketmine\command\CommandSender;
 use pocketmine\command\Command;
 use pocketmine\utils\TextFormat;
 use pocketmine\Player;
 use pocketmine\event\player\PlayerJoinEvent;
 use pocketmine\utils\Config;
 use pocketmine\event\entity\EntityDamageEvent;
-
-class FriendCommand extends PluginCommand {
+class FriendsPE extends PluginBase implements Listener{
 	public $request = array();
+	public function onEnable(){
+		$this->getLogger()->info("Loaded!");
+		$this->getServer()->getPluginManager()->registerEvents($this ,$this);
+		@mkdir($this->getDataFolder());
+		@mkdir($this->getDataFolder()."players/");
 	}
-        
 	//events
 	public function onDamageByPlayer(EntityDamageEvent $ev){
 		$cause = $ev->getCause();
@@ -36,7 +39,7 @@ class FriendCommand extends PluginCommand {
 			$config = new Config($this->getDataFolder()."players/".strtolower($ev->getPlayer()->getName()).".yml", Config::YAML);
 			$config->set("friends", array());
 			$config->save();
-			echo "made config for ".$ev->getPlayer()->getName();
+			$plugin->getLogger()->info("made config for $ev->getPlayer()->getName()");
 		}
 	}
 	//commands
@@ -54,13 +57,12 @@ class FriendCommand extends PluginCommand {
 								$this->addRequest($player, $sender);
 							}	else {
 								$sender->sendMessage(TextFormat::RED."Player not found");
-                                                                return true;
+								return true;
 							}
 						}
 						return true;
 						}{
 							$sender->sendMessage(TextFormat::RED."You do not have permission for that command :(");
-                                                        return true;
 						}
 					break;
 					case "remove":
@@ -68,10 +70,8 @@ class FriendCommand extends PluginCommand {
 						if (isset($args[1])){
 							if ($this->removeFriend($sender, $args[1])){
 								$sender->sendMessage("Friend removed");
-                                                                return true;
 							}else{
 								$sender->sendMessage("Friend not found do /friend list \n to list your friends");
-                                                                return true;
 							}
 						}else{
 							$sender->sendMessage("Usage: /friend remove [name]");
@@ -79,7 +79,7 @@ class FriendCommand extends PluginCommand {
 						return true;
 						}else{
 							$sender->sendMessage(TextFormat::RED."You do not have permission for that command :(");
-                                                        return true;
+							return true;
 						}
 					break;
 					case "list":
@@ -93,27 +93,27 @@ class FriendCommand extends PluginCommand {
 						return true;
 						}else {
 							$sender->sendMessage(TextFormat::RED."You do not have permission for that command :(");
-                                                        return true;
+							return true;
 						}
 					break;
 					
 				}
 			}}else{
 		$sender->sendMessage("Must use command in-game");
-                return true;
+				return true;
 	}
 			break;
 			case "accept":
 				if ($sender->hasPermission("friend.accept")){
-				//echo var_dump($this->request);
+				$plugin->getLogger()->info("var_dump($this->request");
 				if (in_array($sender->getName(), $this->request)){
-					//echo "added";
+					$plugin->getLogger()->info("added");
 					foreach ($this->request as $target => $requestp){
 						$target = $this->getServer()->getPlayer($target);
 						$requestp = $this->getServer()->getPlayer($requestp);
-						echo $target->getName().$requestp->getName();
+						$plugin->getLogger()->info("$target->getName().$requestp->getName()");
 						if ($requestp->getName() === $sender->getName()){
-							//echo "yes";
+							$plugin->getLogger()->info("yes");
 							$this->addFriend($target, $requestp);
 							$this->addFriend($requestp, $target);
 						}
@@ -126,8 +126,8 @@ class FriendCommand extends PluginCommand {
 				return true;
 				}else{
 					$sender->sendMessage(TextFormat::RED."You do not have permission for that command :(");
+					return true;
 				}
-                        return true;
 			break;
 		}
 	}
@@ -137,28 +137,28 @@ class FriendCommand extends PluginCommand {
 		if (!$this->isFriend($requestp, $target->getName())){
 		$requestp->sendMessage("Sent request to ".$target->getName());
 		$this->request[$requestp->getName()] = $target->getName();
-		$target->sendMessage(TextFormat::GREEN.$requestp->getName()." has requested you as a friend do /friend accept to accept or /friend ignore to ignore");
-		echo var_dump($this->request);
+		$target->sendMessage(TextFormat::GREEN.$requestp->getName()." has requested you as a friend do /accept to accept or ignore to ignore");
+		$plugin->getLogger()->info("var_dump($this->request");
  		$task = new cancelrequest($this, $target, $requestp);
  		$this->getServer()->getScheduler()->scheduleDelayedTask($task, 20*10);
  		return true;
 		}else{
 			$requestp->sendMessage("That player is already your friend :)");
-                        return true;
+			return true;
 		}
 	}
 	
-	public function removeRequest(Player $target, Player $requestp, $reason){
+	public function removeRequest(Player $target,Player $requestp, $reason){
 		if (in_array($target->getName(), $this->request)){
 			if ($reason == 0){
 				$requestp->sendMessage(TextFormat::RED."Player ".$target->getName()." did not accept your friend request... :(");
-                                return true;
+				return true;
 			}
 			unset($this->request[$requestp->getName()]);
 		}
 	}
 	
-	public function addFriend(Player $player, Player $friend){
+	public function addFriend(Player $player,Player $friend){
 		$player->sendMessage("added friend".$friend->getName());
 		$friend->sendMessage("added friend ".$player->getName());
 		$config = new Config($this->getDataFolder()."players/". strtolower($player->getName()).".yml", Config::YAML);
@@ -167,7 +167,6 @@ class FriendCommand extends PluginCommand {
 		$config->set("friends", $array);
 		$config->save();
 		$this->removeRequest($friend, $player, 1);
-                return true;
 	}
 	
 	public function removeFriend(Player $player, $friendname){
