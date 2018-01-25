@@ -21,10 +21,11 @@ Well, this plugin allows you to have more than 1 Plugin-Side all in one core, so
 * Add Loader as main class - Done.
 * Add all Listeners folder - Not done.
 * Add all utils folder - Not done.
-* Add Friends plugin - Not done.
-* Add /friends - 5% complete.
+* Add Friends plugin - Done.
+* Add /friends - Done.
 * Add CombatLogger plugin - Not done.
 * Add CombatTitle plugin - Not done.
+* Add BowHealth - Done.
 
 
 
