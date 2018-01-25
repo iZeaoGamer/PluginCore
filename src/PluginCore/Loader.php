@@ -26,7 +26,7 @@ class Loader extends PluginBase{
     
     public function onEnable(){
             $this->RegConfig();
-	        $this->RegCommands();
+	    $this->RegCommands();
             $this->getLogger()->info(C::GREEN."PluginCore Enabled.");
     }
     
@@ -41,7 +41,6 @@ class Loader extends PluginBase{
    }
     private function RegCommands(){
         $this->getServer()->getCommandMap()->register("fly", new Fly("fly", $this));
-        $this->getServer()->getCommandMap()->register("friends", new Friends("friends", $this));
         $this->getServer()->getCommandMap()->register("gbuy", new GBuy("gbuy", $this));
         $this->getServer()->getCommandMap()->register("ban", new Ban("ban", $this));
         $this->getServer()->getCommandMap()->register("banip", new BanIP("banip", $this));
