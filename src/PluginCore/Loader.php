@@ -41,24 +41,24 @@ class Loader extends PluginBase{
     private function RegCommands(){
         $this->getServer()->getCommandMap()->register("fly", new Fly("fly", $this));
         /*$this->getServer()->getCommandMap()->register("gbuy", new GBuy("gbuy", $this)); TODO*/
-        $this->getServer()->getCommandMap()->register("ban", new Ban("ban", $this));
-        $this->getServer()->getCommandMap()->register("banip", new BanIP("banip", $this));
-        $this->getServer()->getCommandMap()->register("tban", new TBan("tban", $this));
-        $this->getServer()->getCommandMap()->register("tbanip", new TBanIP("tbanip", $this));
-        $this->getServer()->getCommandMap()->register("kick", new Kick("kick", $this));
-        $this->getServer()->getCommandMap()->register("tblock", new TBlock("tblock", $this));
-        $this->getServer()->getCommandMap()->register("tblockip", new TBlockIP("tblockip", $this));
-        $this->getServer()->getCommandMap()->register("block", new Block("block", $this));
-        $this->getServer()->getCommandMap()->register("blockip", new BlockIP("blockip", $this));
-        $this->getServer()->getCommandMap()->register("tmute", new TMute("tmute", $this));
-        $this->getServer()->getCommandMap()->register("tmuteip", new TMuteIP("tmuteip", $this));
-        $this->getServer()->getCommandMap()->register("blocklist", new BlockList("blocklist", $this));
-        $this->getServer()->getCommandMap()->register("banlist", new BanList("banlist", $this));
-        $this->getServer()->getCommandMap()->register("mute", new Mute("mute", $this));
-        $this->getServer()->getCommandMap()->register("muteip", new MuteIP("muteip", $this));
-        $this->getServer()->getCommandMap()->register("unban", new Unban("unban", $this));
-        $this->getServer()->getCommandMap()->register("unbanip", new UnbanIP("unbanip", $this));
-        $this->getServer()->getCommandMap()->register("pardon", new Pardon("pardon", $this));
-        $this->getServer()->getCommandMap()->register("pardonip", new PardonIP("pardonip", $this));
+        $this->getServer()->getCommandMap()->register("ban", new BanCommand("ban", $this));
+        $this->getServer()->getCommandMap()->register("banip", new BanIPCommand("banip", $this));
+        $this->getServer()->getCommandMap()->register("tban", new TBanCommand("tban", $this));
+        $this->getServer()->getCommandMap()->register("tbanip", new TBanIPCommand("tbanip", $this));
+        $this->getServer()->getCommandMap()->register("kick", new KickCommand("kick", $this));
+        $this->getServer()->getCommandMap()->register("tblock", new TBlockCommand("tblock", $this));
+        $this->getServer()->getCommandMap()->register("tblockip", new TBlockIPCommand("tblockip", $this));
+        $this->getServer()->getCommandMap()->register("block", new BlockCommand("block", $this));
+        $this->getServer()->getCommandMap()->register("blockip", new BlockIPCommand("blockip", $this));
+        $this->getServer()->getCommandMap()->register("tmute", new TMuteCommand("tmute", $this));
+        $this->getServer()->getCommandMap()->register("tmuteip", new TMuteIPCommand("tmuteip", $this));
+        $this->getServer()->getCommandMap()->register("blocklist", new BlockListCommand("blocklist", $this));
+        $this->getServer()->getCommandMap()->register("banlist", new BanListCommand("banlist", $this));
+        $this->getServer()->getCommandMap()->register("mute", new MuteCommand("mute", $this));
+        $this->getServer()->getCommandMap()->register("muteip", new MuteIPCommand("muteip", $this));
+        $this->getServer()->getCommandMap()->register("unban", new UnbanCommand("unban", $this));
+        $this->getServer()->getCommandMap()->register("unbanip", new UnbanIPCommand("unbanip", $this));
+        $this->getServer()->getCommandMap()->register("pardon", new PardonCommand("pardon", $this));
+        $this->getServer()->getCommandMap()->register("pardonip", new PardonIPCommand("pardonip", $this));
     }
 }
