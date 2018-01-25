@@ -11,7 +11,7 @@ use pocketmine\event\entity\EntityDamageEvent;
 class friend extends Loader {
 	
 	//commands
-	public function onCommand(CommandSender $sender,Command $command, string $label,array $args): bool{
+	public function onCommand(CommandSender $sender, Command $command, string $label, array $args): bool{
 		switch($command->getName()){
 			case "friend":
 			if ($sender instanceof Player){
