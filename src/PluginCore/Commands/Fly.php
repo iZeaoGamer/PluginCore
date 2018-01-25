@@ -8,10 +8,9 @@ use pocketmine\utils\TextFormat;
 use pocketmine\event\entity\EntityDamageEvent;
 use pocketmine\event\entity\EntityDamageByEntityEvent;
 use pocketmine\Player;
-use pocketmine\command\Command;
-use pocketmine\command\CommandSender;
+use pocketmine\command\{PluginCommand, CommandSender};
 use pocketmine\command\CommandExecutor;
-class Fly extends Command {
+class Fly extends PluginCommand {
     public $players = array();
      public function onEntityDamage(EntityDamageEvent $event) {
         if($event instanceof EntityDamageByEntityEvent) {
