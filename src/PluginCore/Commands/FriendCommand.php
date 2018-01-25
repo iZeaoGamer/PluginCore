@@ -1,5 +1,5 @@
 <?php
-namespace PluginCore\Plugins\FriendsPE;
+namespace PluginCore\Commands;
 use pocketmine\plugin\PluginBase;
 use pocketmine\event\Listener;
 use pocketmine\command\CommandSender;
@@ -9,7 +9,7 @@ use pocketmine\Player;
 use pocketmine\event\player\PlayerJoinEvent;
 use pocketmine\utils\Config;
 use pocketmine\event\entity\EntityDamageEvent;
-class FriendsPE extends PluginBase implements Listener{
+class FriendCommand extends PluginBase implements Listener{
 	public $request = array();
 	public function onEnable(){
 		$this->getLogger()->info("Loaded!");
