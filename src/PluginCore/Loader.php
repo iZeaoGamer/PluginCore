@@ -2,13 +2,13 @@
 
 namespace PluginCore;
 
-use Tasks\HighPingCheckTask;
 use pocketmine\Player;
 use pocketmine\plugin\PluginBase;
 use pocketmine\utils\Config;
 use pocketmine\utils\Textformat as C;
-use PluginCore\Commands\Ping;
 use PluginCore\Plugins\ActionSystem;
+use PluginCore\Plugins\FriendsPE;
+use PluginCore\Plugins\BowHealth;
 use PluginCore\Commands\{BanCommand, BanIPCommand};
 use PluginCore\Commands\{TBanCommand, TBanIPCommand};
 use PluginCore\Commands\KickCommand;
@@ -18,9 +18,8 @@ use PluginCore\Commands\{TMuteCommand, TMuteIPCommand};
 use PluginCore\Commands\{BlockListCommand, BanListCommand};
 use PluginCore\Commands\{MuteIPCommand, MuteCommand};
 use PluginCore\Commands\{UnbanCommand, UnbanIPcommand, PardonCommand, PardonIPCommand};
-use PluginCore\Commands\GBuy;
+/*use PluginCore\Commands\GBuy; TODO*/
 use PluginCore\Commands\Friends;
-use PluginCore\Commands\Hub;
 use PluginCore\Commands\Fly;
 class Loader extends PluginBase{
     public $cfg;
@@ -29,8 +28,6 @@ class Loader extends PluginBase{
         $this->onConfig();
         $this->onCommands();
         $config = new Config($this->getDataFolder()."config.yml", Config::YAML);
-        if ($config->get("Enable-HighPingKick") == true){
-            $this->getServer()->getScheduler()->scheduleRepeatingTask(new HighPingCheckTask($this), 100); //5 Sek.
         }
         $this->getLogger()->info(C::GREEN."PluginCore Enabled.");
     }
@@ -44,8 +41,6 @@ class Loader extends PluginBase{
         $this->cfg = new Config($this->getDataFolder() . "config.yml", Config::YAML);
    }
     private function onCommands(){
-        $this->getServer()->getCommandMap()->register("hub", new Hub("hub", $this));
-        $this->getServer()->getCommandMap()->register("ping", new Ping("ping", $this));
         $this->getServer()->getCommandMap()->register("fly", new Fly("fly", $this));
         $this->getServer()->getCommandMap()->register("friends", new Friends("friends", $this));
         $this->getServer()->getCommandMap()->register("gbuy", new GBuy("gbuy", $this));
