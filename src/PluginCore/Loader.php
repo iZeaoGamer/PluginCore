@@ -18,29 +18,28 @@ use PluginCore\Commands\{TMuteCommand, TMuteIPCommand};
 use PluginCore\Commands\{BlockListCommand, BanListCommand};
 use PluginCore\Commands\{MuteIPCommand, MuteCommand};
 use PluginCore\Commands\{UnbanCommand, UnbanIPcommand, PardonCommand, PardonIPCommand};
-/*use PluginCore\Commands\GBuy; TODO*/
+use PluginCore\Commands\GBuy;
 use PluginCore\Commands\Friends;
 use PluginCore\Commands\Fly;
 class Loader extends PluginBase{
     public $cfg;
     
     public function onEnable(){
-        $this->onConfig();
-        $this->onCommands();
-        $config = new Config($this->getDataFolder()."config.yml", Config::YAML);
-        }
-        $this->getLogger()->info(C::GREEN."PluginCore Enabled.");
+            $this->RegConfig();
+	        $this->RegCommands();
+            $this->getLogger()->info(C::GREEN."PluginCore Enabled.");
     }
+    
     public function onDisable(){
         $this->getLogger()->info(C::RED."Disabled.");
     }
-    public function onConfig(){
+    public function RegConfig(){
         @mkdir($this->getDataFolder());
         $this->saveResource("config.yml");
         $this->saveResource("title.yml");
         $this->cfg = new Config($this->getDataFolder() . "config.yml", Config::YAML);
    }
-    private function onCommands(){
+    private function RegCommands(){
         $this->getServer()->getCommandMap()->register("fly", new Fly("fly", $this));
         $this->getServer()->getCommandMap()->register("friends", new Friends("friends", $this));
         $this->getServer()->getCommandMap()->register("gbuy", new GBuy("gbuy", $this));
