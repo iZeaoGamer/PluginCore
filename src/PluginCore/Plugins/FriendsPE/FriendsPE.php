@@ -1,5 +1,5 @@
 <?php
-namespace friends;
+namespace PluginCore\Plugins\FriendsPE;
 use pocketmine\plugin\PluginBase;
 use pocketmine\event\Listener;
 use pocketmine\command\CommandSender;
@@ -9,7 +9,7 @@ use pocketmine\Player;
 use pocketmine\event\player\PlayerJoinEvent;
 use pocketmine\utils\Config;
 use pocketmine\event\entity\EntityDamageEvent;
-class main extends PluginBase implements Listener{
+class FriendsPE extends PluginBase implements Listener{
 	public $request = array();
 	public function onEnable(){
 		$this->getLogger()->info("Loaded!");
@@ -60,7 +60,7 @@ class main extends PluginBase implements Listener{
 								return true;
 							}
 						}
-						return ;
+						return true;
 						}{
 							$sender->sendMessage(TextFormat::RED."You do not have permission for that command :(");
 						}
@@ -76,7 +76,7 @@ class main extends PluginBase implements Listener{
 						}else{
 							$sender->sendMessage("Usage: /friend remove [name]");
 						}
-						return ;
+						return true;
 						}else{
 							$sender->sendMessage(TextFormat::RED."You do not have permission for that command :(");
 							return true;
@@ -90,7 +90,7 @@ class main extends PluginBase implements Listener{
 						foreach ($array as $friendname){
 							$sender->sendMessage(TextFormat::GREEN."* ".$friendname);
 						}
-						return ;
+						return true;
 						}else {
 							$sender->sendMessage(TextFormat::RED."You do not have permission for that command :(");
 							return true;
@@ -119,11 +119,11 @@ class main extends PluginBase implements Listener{
 						}
 						
 					}
-					return ;
+					return true;
 				}else{
 					$sender->sendMessage("No pending friend requests :(");
 				}
-				return ;
+				return true;
 				}else{
 					$sender->sendMessage(TextFormat::RED."You do not have permission for that command :(");
 					return true;
@@ -141,7 +141,7 @@ class main extends PluginBase implements Listener{
 		echo var_dump($this->request);
  		$task = new cancelrequest($this, $target, $requestp);
  		$this->getServer()->getScheduler()->scheduleDelayedTask($task, 20*10);
- 		return ;
+ 		return true;
 		}else{
 			$requestp->sendMessage("That player is already your friend :)");
 			return true;
