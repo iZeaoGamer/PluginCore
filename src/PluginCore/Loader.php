@@ -18,8 +18,7 @@ use PluginCore\Commands\{TMuteCommand, TMuteIPCommand};
 use PluginCore\Commands\{BlockListCommand, BanListCommand};
 use PluginCore\Commands\{MuteIPCommand, MuteCommand};
 use PluginCore\Commands\{UnbanCommand, UnbanIPcommand, PardonCommand, PardonIPCommand};
-use PluginCore\Commands\GBuy;
-use PluginCore\Commands\Friends;
+/*use PluginCore\Commands\GBuy; TODO*/
 use PluginCore\Commands\Fly;
 class Loader extends PluginBase{
     public $cfg;
@@ -41,7 +40,7 @@ class Loader extends PluginBase{
    }
     private function RegCommands(){
         $this->getServer()->getCommandMap()->register("fly", new Fly("fly", $this));
-        $this->getServer()->getCommandMap()->register("gbuy", new GBuy("gbuy", $this));
+        /*$this->getServer()->getCommandMap()->register("gbuy", new GBuy("gbuy", $this)); TODO*/
         $this->getServer()->getCommandMap()->register("ban", new Ban("ban", $this));
         $this->getServer()->getCommandMap()->register("banip", new BanIP("banip", $this));
         $this->getServer()->getCommandMap()->register("tban", new TBan("tban", $this));
