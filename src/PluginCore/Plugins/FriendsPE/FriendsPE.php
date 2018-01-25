@@ -39,7 +39,7 @@ class FriendsPE extends PluginBase implements Listener{
 			$config = new Config($this->getDataFolder()."players/".strtolower($ev->getPlayer()->getName()).".yml", Config::YAML);
 			$config->set("friends", array());
 			$config->save();
-			echo "made config for ".$ev->getPlayer()->getName();
+			$plugin->getLogger()->info("made config for $ev->getPlayer()->getName()");
 		}
 	}
 	//commands
@@ -105,15 +105,15 @@ class FriendsPE extends PluginBase implements Listener{
 			break;
 			case "accept":
 				if ($sender->hasPermission("friend.accept")){
-				//echo var_dump($this->request);
+				$plugin->getLogger()->info("var_dump($this->request");
 				if (in_array($sender->getName(), $this->request)){
-					//echo "added";
+					$plugin->getLogger()->info("added");
 					foreach ($this->request as $target => $requestp){
 						$target = $this->getServer()->getPlayer($target);
 						$requestp = $this->getServer()->getPlayer($requestp);
 						echo $target->getName().$requestp->getName();
 						if ($requestp->getName() === $sender->getName()){
-							//echo "yes";
+							$plugin->getLogger()->info("yes");
 							$this->addFriend($target, $requestp);
 							$this->addFriend($requestp, $target);
 						}
@@ -138,7 +138,7 @@ class FriendsPE extends PluginBase implements Listener{
 		$requestp->sendMessage("Sent request to ".$target->getName());
 		$this->request[$requestp->getName()] = $target->getName();
 		$target->sendMessage(TextFormat::GREEN.$requestp->getName()." has requested you as a friend do /accept to accept or ignore to ignore");
-		echo var_dump($this->request);
+		$plugin->getLogger()->info("var_dump($this->request");
  		$task = new cancelrequest($this, $target, $requestp);
  		$this->getServer()->getScheduler()->scheduleDelayedTask($task, 20*10);
  		return true;
